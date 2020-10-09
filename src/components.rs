@@ -55,11 +55,7 @@ pub struct Seed {
 }
 
 #[derive(Component, Debug, Clone)]
-pub struct SownSeed {
-    pub value : i32,
-    pub time_to_maturation: i32,
-    pub lifespan: i32,
-    pub name : String
+pub struct IsSown {
 }
 
 #[derive(Component, Debug, Clone)]

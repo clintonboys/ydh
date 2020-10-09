@@ -133,6 +133,7 @@ fn main() -> rltk::BError {
     gs.ecs.register::<Renderable>();
     gs.ecs.register::<Player>();
     gs.ecs.register::<Name>();
+    gs.ecs.register::<IsSown>();
     gs.ecs.register::<PlayerStats>();
     gs.ecs.register::<GameClock>();
     gs.ecs.register::<SeedClock>();
@@ -158,7 +159,7 @@ fn main() -> rltk::BError {
     for i in 0..4 {
         let seed_entity = gs.ecs
         .create_entity()
-	    .with(Seed{ value: 1, time_to_maturation: 1, lifespan: 10, name: "Apple seed".to_string() })
+	    .with(Seed{ value: 1, time_to_maturation: 13, lifespan: 10, name: "Apple seed".to_string() })
 	    .with(Name{name: "Apple seed".to_string() })
         .with(InPlayerInventory{})
         .with(SeedClock{ duration: i })
@@ -169,7 +170,7 @@ fn main() -> rltk::BError {
     for i in 0..4 {
         let seed_entity = gs.ecs
         .create_entity()
-	    .with(Seed{ value: 2, time_to_maturation: 1, lifespan: 10, name: "Pear seed".to_string() })
+	    .with(Seed{ value: 2, time_to_maturation: 7, lifespan: 10, name: "Pear seed".to_string() })
 	    .with(Name{name: "Pear seed".to_string() })
         .with(InPlayerInventory{})
         .with(SeedClock{ duration: i })

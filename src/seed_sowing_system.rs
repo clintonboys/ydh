@@ -1,7 +1,7 @@
 use rltk::{Rltk, RGB};
 use specs::prelude::*;
 use super::{RunState, gamelog::GameLog, GameClock, WantsToSowSeed, Seed, 
-    Position, Renderable, InPlayerInventory, Name};
+    Position, Renderable, InPlayerInventory, Name, IsSown};
 
 pub struct SeedSowingSystem {}
 
@@ -15,14 +15,16 @@ impl<'a> System<'a> for SeedSowingSystem {
                         WriteStorage<'a, WantsToSowSeed>,
                         WriteStorage<'a, Seed>,
                         WriteStorage<'a, InPlayerInventory>,
+                        WriteStorage<'a, IsSown>,
                         WriteExpect<'a, GameLog>
                       );
 
     fn run(&mut self, data : Self::SystemData) {
-        let (entities, mut positions, names, mut renderables, mut wants_sow, mut seed, mut inventory, mut log) = data;
+        let (entities, mut positions, names, mut renderables, mut wants_sow, mut seed, mut inventory, mut is_sown, mut log) = data;
 	for (entity, sow) in (&entities, &wants_sow).join() {
 	    // Remove seed from player inventory
-	    inventory.remove(sow.seed);
+        inventory.remove(sow.seed);
+        is_sown.insert(sow.seed, IsSown{});
         // Add seed to sown seeds
         let newx = sow.x1;
         let newy = sow.y1;

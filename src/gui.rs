@@ -51,7 +51,6 @@ pub fn show_inventory(gs : &mut State, ctx : &mut Rltk) -> (ItemMenuResult, Opti
     ctx.print_color(18, y-2, RGB::named(rltk::YELLOW), RGB::named(rltk::BLACK), "Inventory");
     ctx.print_color(18, y+count as i32+1, RGB::named(rltk::YELLOW), RGB::named(rltk::BLACK), "ESCAPE to cancel");
 
-    let mut equippable : Vec<Entity> = Vec::new();
     let mut j = 0;
     let seed_counts = (&names, &player_inventory).join().collect::<Counter<_>>();
     let mut count_vec: Vec<_> = seed_counts.iter().collect();
